@@ -1,6 +1,6 @@
 const { factorial, factorial2 } = require("./index");
 
-describe("This should implement the factorial", () => {
+describe("This should implement the iterative factorial", () => {
   test("Factorial of 0 is 1", () => {
     expect(factorial(0)).toBe(1);
   });
@@ -10,6 +10,9 @@ describe("This should implement the factorial", () => {
   test("Factorial of 20 is 2432902008176640000", () => {
     expect(factorial(20)).toBe(2432902008176640000);
   });
+});
+
+describe("This should implement the recursive factorial", () => {
   test("Factorial of 1 is 1", () => {
     expect(factorial2(1)).toBe(1);
   });

@@ -51,9 +51,9 @@ describe("It should test the Recursive fibonnaci", () => {
     expect(recursiveFib(20)).toBe(6765);
   });
 
-  //   test("calculates correct fib value for 50", () => {
-  //     expect(recursiveFib(50)).toBe(12586269025);
-  //   });
+    test("calculates correct fib value for 50", () => {
+      expect(recursiveFib(50)).toBe(12586269025);
+    });
 });
 
 describe("It should test the Memoized fibonnaci", () => {
