@@ -2,6 +2,11 @@ class Stats {
   constructor(data = []) {
     this.data = data;
   }
+
+  static round(num) {
+    return parseFloat(num.toFixed(2));
+  }
+
   mean() {
     return this.data.reduce((acc, next) => acc + next, 0) / this.data.length;
   }
@@ -18,32 +23,33 @@ class Stats {
   }
   mode() {
     const map = {};
+    this.data.forEach(el => {
+      map[el] = map[el] + 1 || 1;
+    });
     let modes = [];
-    let maxNum = 0;
-    for (let entry of this.data) {
-      map[entry] = map[entry] + 1 || 1;
-    }
-    for (const key in map) {
+    let maxCount = 0;
+    /*
+      this.data  = [1,1,2,2,3,4,4,5,5]
+      map = {
+        '1': 2,
+        '2': 2,
+        '3': 1,
+        '4': 2,
+        '5': 2
+      }
+    */
+    for (let key in map) {
       const value = parseFloat(key);
-      let count = map[key];
-      if (count > maxNum) {
-        maxNum = value;
+      const valueCount = map[key];
+      if (valueCount > maxCount) {
+        maxCount = valueCount;
         modes = [value];
-      } else if (count === maxNum) modes.push(value);
+      } else if (valueCount === maxCount) modes.push(value);
     }
-    if (modes.length === Object.keys(map).length) modes = [];
+    // if all numbers are in the mode array
+    if(modes.length === Object.keys(map).length) modes = [];
     return modes;
-  }
-  round(num) {
-    return parseFloat(num.toFixed(2));
   }
 }
 
-let stat1 = new Stats([1, 2, 3, 4, 4, 5, 5]);
-let stat2 = new Stats([1, 1, 2, 2, 3, 3, 4, 4]);
-stat1.round(stat1.mean());
-stat2.round(stat2.mean());
-stat1.median();
-stat2.median();
-stat1.mode();
-stat2.mode();
+module.exports = Stats;
