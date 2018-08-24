@@ -1,8 +1,6 @@
-/*
-An obvious solution is to use a double nested for loops
+/*An obvious solution is to use a double nested for loops
 but this gives an O(n^2) complexity, 
 which we want to avoid at all costs
-
 
 const twoSum = (arr, sum) => {
   const pairs = [];
@@ -15,11 +13,11 @@ const twoSum = (arr, sum) => {
   }
   return pairs;
 };
- */
+*/
 
-const twoSum = (arr, sum) => {
-  const pairs = [];
+function twoSum(arr, sum) {
   const store = [];
+  const pairs = [];
   for (let part1 of arr) {
     const part2 = sum - part1;
     if (store.includes(part2)) {
@@ -28,19 +26,19 @@ const twoSum = (arr, sum) => {
     store.push(part1);
   }
   return pairs;
-};
+}
 
-const twoSum2 = (arr, sum) => {
+function twoSum2(arr, sum) {
   const map = {};
   const pairs = [];
   for (let part1 of arr) {
-    if (map[part1] !== undefined) {
+    if (map[part1]) {
       pairs.push([part1, map[part1]]);
     } else {
       map[sum - part1] = part1;
     }
   }
   return pairs;
-};
+}
 
 module.exports = { twoSum, twoSum2 };
