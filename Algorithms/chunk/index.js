@@ -1,3 +1,13 @@
+/**
+ * 
+ * Breaks up an arrays into subarrays, with the given sub array size
+ * Example:
+    chunk([1, 2, 3, 4], 2)) => [[1, 2], [3, 4]];
+    chunk([1, 2, 3, 4], 3)) => [[1, 2, 3], [4]];
+    chunk([1, 2, 3, 4], 5)) => [[1, 2, 3, 4]];
+ * 
+ */
+
 const chunk = (arr, size) => {
   const result = [];
   for (var i = 0; i < arr.length; i++) {
@@ -20,13 +30,13 @@ const chunk2 = (arr, size) => {
   return result;
 };
 
-const chunk3 = (arr,size) => {
-  const times = Math.ceil(arr.length/size);
+const chunk3 = (arr, size) => {
+  const times = Math.ceil(arr.length / size);
   const result = [];
   let startIndex = 0;
   let endIndex = size;
-  for(let i = 0; i < times;i++){
-    result.push(arr.slice(startIndex,endIndex));
+  for (let i = 0; i < times; i++) {
+    result.push(arr.slice(startIndex, endIndex));
     startIndex = endIndex;
     endIndex += size;
   }

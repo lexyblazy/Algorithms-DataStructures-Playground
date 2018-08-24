@@ -1,5 +1,7 @@
 /*
-
+  Returns the titleCased version of a sentence
+  Example:-
+   life is interesting ==> Life Is Interesting
 */
 
 const _capitalizeWord = word => word[0].toUpperCase() + word.slice(1);
