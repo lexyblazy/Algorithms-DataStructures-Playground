@@ -12,9 +12,15 @@ class Queue {
   enqueue(record) {
     this.data.unshift(record);
   }
+  add(record){
+    this.enqueue(record)
+  }
   // remove from queue
   dequeue() {
     return this.data.pop();
+  }
+  remove(){
+    return this.dequeue();
   }
   // peek into the queue
   peek(){

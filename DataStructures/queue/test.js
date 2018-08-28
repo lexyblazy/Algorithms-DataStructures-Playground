@@ -1,19 +1,31 @@
-const Queue = require("./index");
+const Queue = require('./index');
 
-const q = new Queue();
+test('Queue is a class', () => {
+  expect(typeof Queue.prototype.constructor).toEqual('function');
+});
 
-q.enqueue(1);
+test('can add elements to a queue', () => {
+  const q = new Queue();
+  expect(() => {
+    q.add(1);
+  }).not.toThrow();
+});
 
-describe("Should Test a Queue", () => {
-  const {data} = q;
+test('can remove elements from a queue', () => {
+  const q = new Queue();
+  expect(() => {
+    q.add(1);
+    q.remove();
+  }).not.toThrow();
+});
 
-  it("Test for enqueuing", () => {
-    expect(q.enqueue(2)).toEqual([2,1]);
-  });
-  it("Test for Dequeuing", () => {
-    expect(q.dequeue()).toBe(data[data.length - 1]);
-  });
-  it('Should peek into the queue',()=>{
-      expect(q.peek()).toBe(data[data.length -1])
-  })
+test('Order of elements is maintained', () => {
+  const q = new Queue();
+  q.add(1);
+  q.add(2);
+  q.add(3);
+  expect(q.remove()).toEqual(1);
+  expect(q.remove()).toEqual(2);
+  expect(q.remove()).toEqual(3);
+  expect(q.remove()).toEqual(undefined);
 });
