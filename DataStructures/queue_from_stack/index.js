@@ -1,43 +1,35 @@
 const Stack = require("./stack");
-/**
- * Queue from Stack
- * The goal here is to implement a queue using two stacks
- *  Queue => FIFO Order
- * Stack => LIFO order
- */
 
 class Queue {
   constructor() {
-    this.stack1 = new Stack();
-    this.stack2 = new Stack();
+    this.first = new Stack();
+    this.second = new Stack();
   }
 
   add(record) {
-    this.stack1.push(record);
+    this.first.push(record);
   }
-
   remove() {
-    while (this.stack1.peek()) {
-      this.stack2.push(this.stack1.pop());
+    // while there is an element in the first stack
+    while (this.first.peek()) {
+      // pop it off and push it on the second stack
+      this.second.push(this.first.pop());
     }
-    const record = this.stack2.pop();
-
-    // go back to original state
-    while (this.stack2.peek()) {
-      this.stack1.push(this.stack2.pop());
-    }
-    return record;
+    return this.second.pop();
   }
-
   peek() {
-    while (this.stack1.peek()) {
-      this.stack2.push(this.stack1.pop());
+    // while there is an element in the first stack
+    while (this.first.peek()) {
+      // pop it off and push it on the second stack
+      this.second.push(this.first.pop());
     }
-    const record = this.stack2.peek();
-    while(this.stack2.peek()){
-      this.stack1.push(this.stack2.pop());
+    const peekedElement = this.second.peek();
+
+    // return all the items to the first stack
+    while (this.second.peek()) {
+      this.first.push(this.second.pop());
     }
-    return record;
+    return peekedElement;
   }
 }
 
