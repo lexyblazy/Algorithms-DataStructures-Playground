@@ -1,17 +1,16 @@
-function levelWidth(node) {
+module.exports = function levelWidth(root) {
+  // level width is similar to breadth first traversal
+  const arr = [root, "s"];
   const counters = [0];
-  const arr = [node, "s"];
   while (arr.length > 1) {
     const node = arr.shift();
     if (node === "s") {
-      arr.push(node);
       counters.push(0);
+      arr.push("s");
     } else {
-      arr.push(...node.children);
       counters[counters.length - 1]++;
+      arr.push(...node.children);
     }
   }
   return counters;
-}
-
-module.exports = levelWidth;
+};

@@ -3,30 +3,30 @@ class Node {
     this.data = data;
     this.children = children;
   }
-  add(data) {
+  add(data){
     const newNode = new Node(data);
     this.children.push(newNode);
   }
-  remove(data) {
-    this.children = this.children.filter(child => child.data !== data);
+  remove(data){
+    this.children = this.children.filter(node => node.data !== data);
   }
 }
 
 class Tree {
-  constructor() {
+  constructor(){
     this.root = null;
   }
-  traverseBF(fn) {
+  traverseBF(fn){
     const arr = [this.root];
-    while (arr.length > 0) {
+    while(arr.length > 0){
       const node = arr.shift();
       arr.push(...node.children);
       fn(node);
     }
   }
-  traverseDF(fn) {
+  traverseDF(fn){
     const arr = [this.root];
-    while (arr.length > 0) {
+    while(arr.length > 0){
       const node = arr.shift();
       arr.unshift(...node.children);
       fn(node);
